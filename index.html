@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Web Audio Teater 9D</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arvo&family=Roboto+Mono&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="awalan">
+        <h1>TEATER 9D</h1>
+        <hr>
+        <div>web interaktif audio player</div>
+    </div>
+    <audio src="https://assets.codepen.io/4358584/Anitek_-_Komorebi.mp3" preload="metadata"></audio>
+    <div class="container">
+        <div class="audio-con">
+            <h2>index audio</h2>
+            <div class="index-au-desc">
+                <b>index audio</b> memungkinkan pengguna untuk memilih dan memainkan audio sesuai nomor urutan
+            </div>
+            <div class="index-au-list" id="index-list">
+            </div>
+        </div>
+        <h2>Key</h2>
+        <table>
+            <tr class="col-j">
+                <td>key</td>
+                <td>fungsi</td>
+            </tr>
+            <tr>
+                <td>space</td>
+                <td>play/stop</td>
+            </tr>
+            <tr>
+                <td>panah kanan/panah bawah</td>
+                <td>audio berikutnya</td>
+            </tr>
+            <tr>
+                <td>panah kiri/panah atas</td>
+                <td>audio sebelumnya</td>
+            </tr>
+        </table>
+        <div class="audio-list">
+            <h2>Audio List</h2>
+            <div id="audio-list-col">
+                
+            </div>
+        </div>
+    </div>
+    <a href="https://id.pikbest.com/sound-effects/percakapan-berisik-di-aula-sekolah_556108.html">id.pikbest.com</a>
+    <a href="https://www.flaticon.com/free-icons/pause" title="pause icons">Debi Alpa Nugraha - Flaticon</a>
+    <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6722">Pixabay</a>
+
+    <script src="./data/audio-data.js"></script>
+    <script src="./audio.js"></script>
+</body>
+</html>

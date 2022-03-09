@@ -1,0 +1,168 @@
+body {
+    background-color: rgb(30, 32, 36);
+}
+
+h1, h2 {
+    margin: 0;
+}
+.awalan {
+    text-align: center;
+    margin: 2cm 10% 1cm 10%;
+    color: white;
+}
+.awalan h1 {
+    font-size: 120px;
+    font-family: 'Arvo', sans-serif;
+}
+.awalan hr {
+    width: 40%;
+}
+.awalan div {
+    font-family: 'Roboto Mono', monospace;
+}
+.container {
+    background-color: rgb(40, 42, 48);
+    margin: 0 10%;
+    padding: 20px 30px;
+    color: white;
+    border: solid white;
+    font-family: 'Roboto', sans-serif;
+}
+.audio-con {
+    margin-top: 20px;
+    float: right;
+    width: 28%;
+    border: 2px solid white;
+    padding: 20px;
+}
+.index-au-desc, .index-au-list, .audio-list {
+    margin-top: 20px;
+}
+.index-au-list button {
+    margin-right: 5px;
+    font-size: larger;
+    width: 1.2cm;
+    height: 1.2cm;
+    padding: 10px;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    transition-duration: .2s;
+}
+.index-au-list button:hover {
+    background-color: white;
+    color: rgb(40, 42, 48);
+    cursor: pointer;
+}
+table {
+    margin-top: 20px;
+    width: 65%;
+    background-color: rgb(66, 68, 78);
+    border-collapse: collapse;
+}
+td {
+    padding: 10px;
+}
+.col-j td {
+    text-align: center;
+    background-color: white;
+    font-weight: bold;
+    color: rgb(40, 42, 48);
+    padding: 12px;
+    font-size: large;
+}
+#audio-list-col {
+    margin-top: 30px;
+    height: 8cm;
+}
+.audio-list {
+    border: 2px solid white;
+    padding: 20px;
+}
+.au-li {
+    background-color: rgb(60, 62, 71);
+    border: 2px solid white;
+    padding: 4px;
+    transition-duration: .2s;
+}
+.au-li:hover {
+    border: 2px solid rgb(60, 62, 71);
+}
+.audio-name, .au-li button, .volume-col, .volume-col * {
+    display: inline-block;
+}
+.audio-name {
+    margin-left: 10px;
+    transform: translateY(-30%);
+}
+.au-li button {
+    background-color: transparent;
+    border: 2px solid white;
+    width: 1cm;
+    height: 1cm;
+    transition-duration: .2s;
+}
+.au-li button:hover {
+    border: 2px solid rgba(255, 255, 255, .5);
+    cursor: pointer;
+}
+.au-li button:hover > img {
+    filter: opacity(.5);
+}
+.au-li img {
+    margin-top: 2px;
+    width: 100%;
+    transition-duration: .2s;
+}
+.volume-col {
+    float: right;
+    width: 30%;
+    text-align: right;
+}
+.volume-col input {
+    transform: translateY(-7px);
+}
+.volume-col div {
+    transform: translateY(-6px);
+}
+.volume-col button {
+    width: 40px;
+}
+.volume-col input {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: white;
+    border-radius: 4px;
+    outline: none;
+    transition-duration: .1s;
+}
+.volume-col input:hover {
+    cursor: pointer;
+}
+.volume-col input:active {
+    background-color: rgba(255, 255, 255, .8);
+}
+.volume-col input[type="range"] {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    margin: 0 8px 0 8px;
+    width: 50%;
+}
+.volume-col input[type="range"]::-ms-fill-upper {
+    background-color: black;
+}
+.volume-col input[type="range"]::-ms-fill-upper {
+    background-color: white;
+}
+.volume-col input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
