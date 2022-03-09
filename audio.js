@@ -70,7 +70,7 @@ window.onload = function() {
         '    </div>\n'+
         '</div>\n';
 
-        indexRow += '<button>'+(i+1)+'</button>';
+        indexRow += '<button onclick="playAudio('+i+')">'+(i+1)+'</button>';
         audioRow += audioLiBtn;
         indexList.innerHTML = indexRow;
         auListCol.innerHTML = audioRow;
