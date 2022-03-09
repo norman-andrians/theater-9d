@@ -84,6 +84,7 @@ td {
     background-color: rgb(60, 62, 71);
     border: 2px solid white;
     padding: 4px;
+    margin-bottom: 8px;
     transition-duration: .2s;
 }
 .au-li:hover {
