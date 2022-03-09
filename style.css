@@ -1,5 +1,56 @@
 body {
     background-color: rgb(30, 32, 36);
+    margin: none;
+}
+
+.intro {
+    position: fixed;
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(12, 13, 15);
+    z-index: 8;
+    margin-top: -70px;
+    margin-left: -8px;
+    color: white;
+    animation: intro-close 6s;
+    transform: translateY(-102vh);
+}
+
+@keyframes intro-close {
+    0%, 80% { display: block; transform: translateY(0); }
+    99% { transform: translateY(-102vh); }
+}
+
+.row {
+    transform: translateY(25vh);
+    animation: intro-row-anim 1s;
+}
+
+@keyframes intro-row-anim {
+    from { transform: translateY(-100%) rotate(-200deg); opacity: 0; }
+}
+
+.intro > .row > h1 {
+    font-family: 'Overpass', sans-serif;
+    font-size: 4vw;
+    margin-top: 40px;
+    animation: intro-title-anim 3s;
+}
+
+@media screen and (min-width: 1600px) {
+    .intro > .row > h1  {
+        font-size: 2vw;
+    }
+}
+
+@keyframes intro-title-anim {
+    0%, 40% { opacity: 0; }
+    80% { opacity: 1; }
+}
+
+.intro img {
+    width: 8cm;
 }
 
 h1, h2 {

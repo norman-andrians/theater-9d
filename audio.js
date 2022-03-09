@@ -1,7 +1,9 @@
+/*
 if (screen.width < 640) {
     alert("peringatan:\ntidak disarankan untuk menggunakan perangkat ini");
     alert("palingan suatu saat nanti web ini dijadiin web player pasti dibuati untuk mobile :b")
 }
+*/
 
 const indexList = document.getElementById('index-list');
 const auListCol = document.getElementById('audio-list-col');
