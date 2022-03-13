@@ -4,6 +4,7 @@ body {
 }
 
 .intro {
+    display: none;
     position: fixed;
     text-align: center;
     width: 100vw;
@@ -128,6 +129,10 @@ td {
     height: 8cm;
 }
 .audio-list {
+    margin-right: 12.5cm;
+    overflow-x: auto;
+    overflow-y: scroll;
+    box-sizing: border-box;
     border: 2px solid white;
     padding: 20px;
 }
@@ -141,14 +146,29 @@ td {
 .au-li:hover {
     border: 2px solid rgb(60, 62, 71);
 }
-.audio-name, .au-li button, .volume-col, .volume-col * {
+.audio-name, .au-li button, .volume-col, .au-list-index-num, .volume-col * {
     display: inline-block;
 }
 .audio-name {
     margin-left: 10px;
-    transform: translateY(-30%);
+}
+
+.au-list-index-num {
+    margin-left: -6px;
+    margin-top: -6px;
+    position: absolute;
+    text-align: center;
+    background-color: white;
+    color: rgb(60, 62, 71);
+    width: 30px;
+    height: 50px;
+}
+.au-list-index-num div {
+    transform: translateY(80%);
+    font-weight: bold;
 }
 .au-li button {
+    margin-left: 30px;
     background-color: transparent;
     border: 2px solid white;
     width: 1cm;
@@ -173,10 +193,10 @@ td {
     text-align: right;
 }
 .volume-col input {
-    transform: translateY(-7px);
+    transform: translate(28px, -7px);
 }
 .volume-col div {
-    transform: translateY(-6px);
+    transform: translate(28px, -6px);
 }
 .volume-col button {
     width: 40px;
