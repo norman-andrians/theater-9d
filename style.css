@@ -4,6 +4,7 @@ body {
 }
 
 .intro {
+    display: none;
     position: fixed;
     text-align: center;
     width: 100vw;
@@ -246,13 +247,16 @@ td {
 }
 .container-pendukung h1, .container-pendukung h2 {
     font-family: 'Ubuntu', sans-serif;
-    margin: 8px 0;
+    margin: 8px 0 8px -2px;
 }
 .container-pendukung h1 { font-size: 50px; }
 .container-pendukung h2 { font-size: 30px; }
 .container-pendukung a {
     text-decoration: none;
     color: rgb(66, 196, 66);
+}
+.container-pendukung div:last-child {
+    margin-top: 20px;
 }
 
 @media screen and (max-width: 1705px) {
