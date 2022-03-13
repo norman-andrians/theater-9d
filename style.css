@@ -4,7 +4,6 @@ body {
 }
 
 .intro {
-    display: none;
     position: fixed;
     text-align: center;
     width: 100vw;
@@ -85,6 +84,7 @@ h1, h2 {
     float: right;
     width: 28%;
     border: 2px solid white;
+    margin-left: 20px;
     padding: 20px;
 }
 .index-au-desc, .index-au-list, .audio-list {
@@ -129,14 +129,16 @@ td {
     height: 8cm;
 }
 .audio-list {
-    margin-right: 12.5cm;
+    *zoom: 1;
     overflow-x: auto;
     overflow-y: scroll;
+    height: 8cm;
     box-sizing: border-box;
     border: 2px solid white;
     padding: 20px;
 }
 .au-li {
+    height: 40px;
     background-color: rgb(60, 62, 71);
     border: 2px solid white;
     padding: 4px;
@@ -150,25 +152,23 @@ td {
     display: inline-block;
 }
 .audio-name {
+    transform: translateY(-6px);
     margin-left: 10px;
 }
 
 .au-list-index-num {
-    margin-left: -6px;
-    margin-top: -6px;
-    position: absolute;
     text-align: center;
     background-color: white;
     color: rgb(60, 62, 71);
     width: 30px;
     height: 50px;
+    transform: translate(-6px, -20px);
 }
 .au-list-index-num div {
     transform: translateY(80%);
     font-weight: bold;
 }
 .au-li button {
-    margin-left: 30px;
     background-color: transparent;
     border: 2px solid white;
     width: 1cm;
@@ -189,14 +189,13 @@ td {
 }
 .volume-col {
     float: right;
-    width: 30%;
     text-align: right;
 }
 .volume-col input {
-    transform: translate(28px, -7px);
+    transform: translate(0, -7px);
 }
 .volume-col div {
-    transform: translate(28px, -6px);
+    transform: translate(0, -6px);
 }
 .volume-col button {
     width: 40px;
@@ -237,4 +236,25 @@ td {
     background: white;
     border-radius: 50%;
     cursor: pointer;
+}
+
+.container-pendukung {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    margin: 60px 8cm 40px 8cm;
+    font-size: larger;
+}
+.container-pendukung h1, .container-pendukung h2 {
+    font-family: 'Ubuntu', sans-serif;
+    margin: 8px 0;
+}
+.container-pendukung h1 { font-size: 50px; }
+.container-pendukung h2 { font-size: 30px; }
+.container-pendukung a {
+    text-decoration: none;
+    color: rgb(66, 196, 66);
+}
+
+@media screen and (max-width: 1705px) {
+    
 }

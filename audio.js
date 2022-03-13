@@ -20,7 +20,7 @@ let currentIndex = 0;
 let isPaused = [];
 let audioVol = [];
 
-function playWhere(imdek, tipe, imd) {
+function playWhere(imdek, tipe) {
     if (tipe == 'origin') {
         const listBorder = document.querySelectorAll('.au-li')[imdek];
         const indexBg = document.querySelectorAll('.au-list-index-num')[imdek];
@@ -32,7 +32,7 @@ function playWhere(imdek, tipe, imd) {
             listBorderPre.style.borderColor = indexBgPre.style.backgroundColor = "white";
         }
 
-        indexBg.style.backgroundColor = listBorder.style.borderColor = "rgb(50, 255, 50)";
+        indexBg.style.backgroundColor = listBorder.style.borderColor = "rgb(0, 180, 0)";
     }
     else {
         const listBorder = document.querySelectorAll('.index-btn')[imdek];
@@ -42,7 +42,7 @@ function playWhere(imdek, tipe, imd) {
             document.querySelectorAll('.index-btn')[i].style.backgroundColor = "transparent";
         }
 
-        listBorder.style.borderColor = listBorder.style.backgroundColor = "rgb(50, 255, 50)";
+        listBorder.style.borderColor = listBorder.style.backgroundColor = "rgb(0, 180, 0)";
     }
 }
 
@@ -96,17 +96,39 @@ function playAudio(audioIndex) {
 
 function audioList() {
     for (let i = 0; i < audioData.nama.length; i++) {
-        const volSlider = document.querySelectorAll('#vol-slider')[i].addEventListener('input', function() {
+        const volSlider = document.querySelectorAll('#vol-slider')[i]
+        volSlider.addEventListener('input', function() {
+            const soundSrc = document.querySelectorAll('#audio-source')[i];
             const volVal = document.querySelectorAll('#vol-val')[i];
             const soundImg = document.querySelectorAll('#sound-img')[i];
             
             audioVol[i] = Math.floor(this.value);
             volVal.innerHTML = this.value;
 
-            console.log(audioVol);
+            soundSrc.volume = audioVol[i] / 100;
 
             if (this.value <= 0) { soundImg.src = './images/sound-off.png' }
             else { soundImg.src = './images/sound-on.png' }
+        });
+        const keyAudioIndex = document.querySelector('html').addEventListener('keyup', (event) => {
+            const soundSrc = document.querySelectorAll('#audio-source');
+            if (event.keyCode == 37) {
+                let preVol;
+                volSlider.value -= 10;
+                console.log(volSlider.value);
+                
+                preVol = volSlider.value;
+                audioVol[i] = Math.floor(volSlider.value);
+    
+                soundSrc[i].volume = audioVol[i] / 100;
+            }
+            else if (event.keyCode == 39) {
+                if (audioVol[currentIndex] < 100) {
+                    volSlider.value++;
+                    slideVol();
+                    soundSrc[currentIndex] = audioVol[currentIndex];
+                }
+            }
         });
     }
 }
@@ -136,11 +158,16 @@ window.onload = function() {
         auListCol.innerHTML = audioRow;
     }
 
-    const volSlider = document.querySelectorAll('#vol-slider')[currentIndex].addEventListener('input', function() {
-        const soundSrc = document.querySelectorAll('#audio-source')[currentIndex];
-        audioVol[currentIndex] = Math.floor(this.value) / 100;
+    const volSlider = document.querySelectorAll('#vol-slider')[currentIndex];
 
-        soundSrc.volume = audioVol[currentIndex];
+    const keyAudioIndex = document.querySelector('html').addEventListener('keyup', (event) => {
+        const soundSrc = document.querySelectorAll('#audio-source');
+        for (let i = 0; i < audioData.nama.length; i++) {
+            if (event.keyCode == i+49 || event.keyCode == i + 97) {
+                event.preventDefault();
+                playAudio(i);
+            }
+        }
     });
 
     audioList();
