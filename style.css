@@ -92,6 +92,7 @@ h1, h2 {
 }
 .index-au-list button {
     margin-right: 5px;
+    margin-bottom: 5px;
     font-size: larger;
     width: 1.2cm;
     height: 1.2cm;
@@ -113,6 +114,8 @@ table {
     background-color: rgb(66, 68, 78);
     border-collapse: collapse;
 }
+
+
 td {
     padding: 10px;
 }
@@ -162,7 +165,7 @@ td {
     color: rgb(60, 62, 71);
     width: 30px;
     height: 50px;
-    transform: translate(-6px, -20px);
+    transform: translate(-15%, -20px);
 }
 .au-list-index-num div {
     transform: translateY(80%);
@@ -241,7 +244,7 @@ td {
 .container-pendukung {
     color: white;
     font-family: 'Roboto', sans-serif;
-    margin: 60px 8cm 40px 8cm;
+    margin: 60px 18% 40px 18%;
     font-size: larger;
 }
 .container-pendukung h1, .container-pendukung h2 {
@@ -258,6 +261,24 @@ td {
     margin-top: 20px;
 }
 
-@media screen and (max-width: 1705px) {
-    
+@media screen and (max-width: 1366px) {
+    .container-pendukung {
+        font-size: medium;
+    }
+    .container-pendukung h1 { font-size: xx-large; }
+    .container-pendukung h2 { font-size: x-large; }
+}
+
+@media screen and (max-width: 1245px) {
+    .audio-con {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        float: none;
+        margin-left: 0px;
+        padding: 20px;
+        width: auto;
+    }
+    table {
+        width: 100%;
+    }
 }
