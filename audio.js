@@ -1,9 +1,13 @@
-/*
+// ==================================
+// cape-cape koding cuma buat thater
+// ==================================
+
+
 if (screen.width < 640) {
-    alert("peringatan:\ntidak disarankan untuk menggunakan perangkat ini");
-    alert("palingan suatu saat nanti web ini dijadiin web player pasti dibuati untuk mobile :b")
+    setTimeout(() => {
+        alert("peringatan:\ntidak disarankan untuk pengguna mobile");
+    }, 5500);
 }
-*/
 
 const indexList = document.getElementById('index-list');
 const auListCol = document.getElementById('audio-list-col');
@@ -96,7 +100,7 @@ function playAudio(audioIndex) {
 
 function audioList() {
     for (let i = 0; i < audioData.nama.length; i++) {
-        const volSlider = document.querySelectorAll('#vol-slider')[i]
+        const volSlider = document.querySelectorAll('#vol-slider')[i];
         volSlider.addEventListener('input', function() {
             const soundSrc = document.querySelectorAll('#audio-source')[i];
             const volVal = document.querySelectorAll('#vol-val')[i];
@@ -113,21 +117,20 @@ function audioList() {
         const keyAudioIndex = document.querySelector('html').addEventListener('keyup', (event) => {
             const soundSrc = document.querySelectorAll('#audio-source');
             if (event.keyCode == 37) {
-                let preVol;
+                event.preventDefault();
                 volSlider.value -= 10;
-                console.log(volSlider.value);
-                
-                preVol = volSlider.value;
                 audioVol[i] = Math.floor(volSlider.value);
     
                 soundSrc[i].volume = audioVol[i] / 100;
             }
-            else if (event.keyCode == 39) {
-                if (audioVol[currentIndex] < 100) {
+            if (event.keyCode == 39) {
+                event.preventDefault();
+                for (let k = 0; k < 10; k++) {
                     volSlider.value++;
-                    slideVol();
-                    soundSrc[currentIndex] = audioVol[currentIndex];
                 }
+                audioVol[i] = Math.floor(volSlider.value);
+        
+                soundSrc[i].volume = audioVol[i] / 100;
             }
         });
     }
@@ -167,6 +170,11 @@ window.onload = function() {
                 event.preventDefault();
                 playAudio(i);
             }
+        }
+
+        if (event.keyCode == 32) {
+            event.preventDefault();
+            playAudio(currentIndex);
         }
     });
 

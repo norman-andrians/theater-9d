@@ -87,6 +87,20 @@ h1, h2 {
     margin-left: 20px;
     padding: 20px;
 }
+.download-con button {
+    background-color: transparent;
+    border: 3px solid white;
+    color: white;
+    font-size: large;
+    padding: 11px 10px 10px 10px;
+    width: 6cm;
+    transition-duration: .15s;
+}
+.download-con button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: rgb(40, 42, 48);
+}
 .index-au-desc, .index-au-list, .audio-list {
     margin-top: 20px;
 }
@@ -280,5 +294,11 @@ td {
     }
     table {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .container {
+        margin: 0 20px;
     }
 }
