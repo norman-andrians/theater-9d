@@ -24,6 +24,24 @@ let currentIndex = 0;
 let isPaused = [];
 let audioVol = [];
 
+function audioSolect(imdek) {
+    const indexBorder = document.querySelectorAll('.index-btn')[imdek];
+
+    const listBorder = document.querySelectorAll('.au-li')[imdek];
+    const listBg = document.querySelectorAll('.au-list-index-num')[imdek];
+
+    for (let i = 0; i < audioData.nama.length; i++) {
+        const listBorderAll = document.querySelectorAll('.au-li')[i];
+        const listBgAll = document.querySelectorAll('.au-list-index-num')[i];
+
+        document.querySelectorAll('.index-btn')[i].style.borderColor = "white";
+        document.querySelectorAll('.index-btn')[i].style.backgroundColor = "transparent";
+        listBorderAll.style.borderColor = listBgAll.style.backgroundColor = 'white';
+    }
+
+    listBorder.style.borderColor = listBg.style.backgroundColor = indexBorder.style.backgroundColor = indexBorder.style.borderColor = 'rgb(200, 200, 0)';
+}
+
 function playWhere(imdek, tipe) {
     if (tipe == 'origin') {
         const listBorder = document.querySelectorAll('.au-li')[imdek];
@@ -53,14 +71,11 @@ function playWhere(imdek, tipe) {
 function audioEnd(audioIndex) {
     const soundSrc = document.querySelectorAll('#audio-source')[audioIndex];
 
-    if (isPaused[audioIndex] == true) {
-        const auEnd = setInterval(() => {
-            if (soundSrc.ended) {
-                document.querySelectorAll('#au-play-img')[audioIndex].src = playImg;
-                clearInterval(auEnd);
-            }
-        }, soundSrc.duration * 10000);
-    }
+    soundSrc.addEventListener('ended', () => {
+        document.querySelectorAll('#au-play-img')[audioIndex].src = playImg;
+        audioSolect(audioIndex);
+        isPaused[audioIndex] = false;
+    })
 }
 
 function playAudio(audioIndex) {
@@ -82,7 +97,7 @@ function playAudio(audioIndex) {
         let nearVol = audioVol[audioIndex];
         document.querySelectorAll('#au-play-img')[audioIndex].src = playImg;
 
-        const volFade = setInterval(function() {
+        const volFade = setInterval(() => {
             if (nearVol <= 0) {
                 soundSrc.pause();
                 isPaused[audioIndex] = false;
@@ -96,15 +111,19 @@ function playAudio(audioIndex) {
             }
         }, 1);
     }
+
+    audioEnd(audioIndex);
 }
 
 function audioList() {
     for (let i = 0; i < audioData.nama.length; i++) {
+        const volVal = document.querySelectorAll('#vol-val')[i];
         const volSlider = document.querySelectorAll('#vol-slider')[i];
+        const soundImg = document.querySelectorAll('#sound-img')[i];
+
         volSlider.addEventListener('input', function() {
-            const soundSrc = document.querySelectorAll('#audio-source')[i];
             const volVal = document.querySelectorAll('#vol-val')[i];
-            const soundImg = document.querySelectorAll('#sound-img')[i];
+            const soundSrc = document.querySelectorAll('#audio-source')[i];
             
             audioVol[i] = Math.floor(this.value);
             volVal.innerHTML = this.value;
@@ -119,6 +138,7 @@ function audioList() {
             if (event.keyCode == 37) {
                 event.preventDefault();
                 volSlider.value -= 10;
+                volVal.innerHTML = volSlider.value;
                 audioVol[i] = Math.floor(volSlider.value);
     
                 soundSrc[i].volume = audioVol[i] / 100;
@@ -128,10 +148,14 @@ function audioList() {
                 for (let k = 0; k < 10; k++) {
                     volSlider.value++;
                 }
+                volVal.innerHTML = volSlider.value;
                 audioVol[i] = Math.floor(volSlider.value);
         
                 soundSrc[i].volume = audioVol[i] / 100;
             }
+
+            if (volSlider.value <= 0) { soundImg.src = './images/sound-off.png' }
+            else { soundImg.src = './images/sound-on.png' }
         });
     }
 }
@@ -155,7 +179,7 @@ window.onload = function() {
         '    </div>\n'+
         '</div>\n';
 
-        indexRow += '<button class="index-btn" onclick="playAudio('+i+')">'+(i+1)+'</button>';
+        indexRow += '<button class="index-btn" onclick="audioSolect('+i+')">'+(i+1)+'</button>';
         audioRow += audioLiBtn;
         indexList.innerHTML = indexRow;
         auListCol.innerHTML = audioRow;
@@ -168,17 +192,31 @@ window.onload = function() {
         for (let i = 0; i < audioData.nama.length; i++) {
             if (event.keyCode == i+49 || event.keyCode == i + 97) {
                 event.preventDefault();
-                playAudio(i);
+                currentIndex = i;
+                audioSolect(currentIndex);
             }
         }
 
-        if (event.keyCode == 32) {
+        if (event.keyCode == 38 && currentIndex > 0) {
+            event.preventDefault();
+            currentIndex--;
+            audioSolect(currentIndex);
+        }
+        else if (event.keyCode == 40 && currentIndex < audioData.nama.length - 1) {
+            event.preventDefault();
+            currentIndex++;
+            audioSolect(currentIndex);
+        }
+
+        if (event.keyCode == 13) {
             event.preventDefault();
             playAudio(currentIndex);
         }
+
     });
 
     audioList();
+    audioSolect(currentIndex);
 }
 
 

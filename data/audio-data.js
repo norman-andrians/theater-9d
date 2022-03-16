@@ -9,6 +9,8 @@ const audioData = {
         'kuntilanak 2',
         'kuntilanak 3',
         'kuntilanak 4',
+        'kuntilanak nangis',
+        'kuntilanak nangis kenceng',
         'serigala mengaung'
     ],
     'source' : [
@@ -21,6 +23,8 @@ const audioData = {
         './audio/sound_006_kuntilanak-2.mp3',
         './audio/sound_007_kuntilanak-3.mp3',
         './audio/sound_008_kuntilanak-4.mp3',
-        './audio/sound_009_serigala.mp3'
+        './audio/sound_009_kuntilanak-nangis.mp3',
+        './audio/sound_010_kuntilanak-nangis-kencang.mp3',
+        './audio/sound_011_serigala.mp3'
     ]
 }
