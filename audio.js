@@ -21,8 +21,10 @@ let audioRow = '';
 let fullIndex = 0;
 let currentIndex = 0;
 
+let selectedIndex = currentIndex;
+
 let isPaused = [];
-let audioVol = [];
+let audioVol = volPreset;
 
 function audioSolect(imdek) {
     const indexBorder = document.querySelectorAll('.index-btn')[imdek];
@@ -31,15 +33,20 @@ function audioSolect(imdek) {
     const listBg = document.querySelectorAll('.au-list-index-num')[imdek];
 
     for (let i = 0; i < audioData.nama.length; i++) {
-        const listBorderAll = document.querySelectorAll('.au-li')[i];
-        const listBgAll = document.querySelectorAll('.au-list-index-num')[i];
-
-        document.querySelectorAll('.index-btn')[i].style.borderColor = "white";
-        document.querySelectorAll('.index-btn')[i].style.backgroundColor = "transparent";
-        listBorderAll.style.borderColor = listBgAll.style.backgroundColor = 'white';
+        if (i == imdek) {
+            listBorder.style.borderColor = listBg.style.backgroundColor = indexBorder.style.backgroundColor = indexBorder.style.borderColor = 'rgb(200, 200, 0)';
+        }
+        else {
+            if (isPaused[imdek] == false) {
+                stopWhere(i);
+            }
+            else {
+                stopWhere(i);
+                playWhere(selectedIndex, 'nope');
+                playWhere(selectedIndex, 'origin');
+            }
+        }
     }
-
-    listBorder.style.borderColor = listBg.style.backgroundColor = indexBorder.style.backgroundColor = indexBorder.style.borderColor = 'rgb(200, 200, 0)';
 }
 
 function playWhere(imdek, tipe) {
@@ -47,25 +54,23 @@ function playWhere(imdek, tipe) {
         const listBorder = document.querySelectorAll('.au-li')[imdek];
         const indexBg = document.querySelectorAll('.au-list-index-num')[imdek];
 
-        for (let i = 0; i < audioData.nama.length; i++) {
-            const listBorderPre = document.querySelectorAll('.au-li')[i];
-            const indexBgPre = document.querySelectorAll('.au-list-index-num')[i];
-
-            listBorderPre.style.borderColor = indexBgPre.style.backgroundColor = "white";
-        }
-
         indexBg.style.backgroundColor = listBorder.style.borderColor = "rgb(0, 180, 0)";
     }
     else {
         const listBorder = document.querySelectorAll('.index-btn')[imdek];
-        
-        for (let i = 0; i < audioData.nama.length; i++) {
-            document.querySelectorAll('.index-btn')[i].style.borderColor = "white";
-            document.querySelectorAll('.index-btn')[i].style.backgroundColor = "transparent";
-        }
 
         listBorder.style.borderColor = listBorder.style.backgroundColor = "rgb(0, 180, 0)";
     }
+}
+
+function stopWhere(imdek) {
+    const listBorder = document.querySelectorAll('.au-li')[imdek];
+    const listBg = document.querySelectorAll('.au-list-index-num')[imdek];
+
+    const indexBorder = document.querySelectorAll('.index-btn')[imdek];
+
+    listBorder.style.borderColor = indexBorder.style.borderColor = listBg.style.backgroundColor = 'white';
+    indexBorder.style.backgroundColor = 'transparent';
 }
 
 function audioEnd(audioIndex) {
@@ -81,13 +86,13 @@ function audioEnd(audioIndex) {
 function playAudio(audioIndex) {
     const soundSrc = document.querySelectorAll('#audio-source')[audioIndex];
 
-    currentIndex = audioIndex;
+    selectedIndex = currentIndex = audioIndex;
 
-    playWhere(currentIndex, 'nope');
-    playWhere(currentIndex, 'origin');
 
     if (isPaused[audioIndex] == false) {
         document.querySelectorAll('#au-play-img')[audioIndex].src = pauseImg;
+        playWhere(selectedIndex, 'nope');
+        playWhere(selectedIndex, 'origin');
 
         soundSrc.volume = audioVol[audioIndex] / 100;
         soundSrc.play();
@@ -163,7 +168,6 @@ function audioList() {
 window.onload = function() {
     for (let i = 0; i < audioData.nama.length; i++) {
         isPaused[i] = false;
-        audioVol[i] = 100;
 
         fullIndex++;
         const audioLiBtn = 
@@ -173,8 +177,8 @@ window.onload = function() {
         '    <button id="au-play-btn" onclick="playAudio('+i+');"><img src="./images/play-btn.png" alt="pause" id="au-play-img"></button>\n'+
         '    <div class="audio-name"><span>'+audioData.nama[i]+'</span></div>\n'+
         '    <div class="volume-col">\n'+
-        '        <div id="vol-val">100</div>\n'+
-        '        <input type="range" id="vol-slider" max="100" value="100">\n'+
+        '        <div id="vol-val">'+audioVol[i]+'</div>\n'+
+        '        <input type="range" id="vol-slider" max="100" value="'+audioVol[i]+'">\n'+
         '        <button><img src="./images/sound-on.png" alt="vol" id="sound-img"></button>\n'+
         '    </div>\n'+
         '</div>\n';
@@ -192,7 +196,7 @@ window.onload = function() {
         for (let i = 0; i < audioData.nama.length; i++) {
             if (event.keyCode == i+49 || event.keyCode == i + 97) {
                 event.preventDefault();
-                currentIndex = i;
+                currentIndex = selectedIndex = i;
                 audioSolect(currentIndex);
             }
         }
@@ -200,17 +204,19 @@ window.onload = function() {
         if (event.keyCode == 38 && currentIndex > 0) {
             event.preventDefault();
             currentIndex--;
-            audioSolect(currentIndex);
+            selectedIndex = currentIndex;
+            audioSolect(selectedIndex);
         }
         else if (event.keyCode == 40 && currentIndex < audioData.nama.length - 1) {
             event.preventDefault();
             currentIndex++;
-            audioSolect(currentIndex);
+            selectedIndex = currentIndex;
+            audioSolect(selectedIndex);
         }
 
         if (event.keyCode == 13) {
             event.preventDefault();
-            playAudio(currentIndex);
+            playAudio(selectedIndex);
         }
 
     });
@@ -221,3 +227,4 @@ window.onload = function() {
 
 
 // alert(path.split('\\').pop().split('/').pop());
+
