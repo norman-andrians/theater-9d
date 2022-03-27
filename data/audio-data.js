@@ -11,7 +11,12 @@ const audioData = {
         'kuntilanak 4',
         'kuntilanak nangis',
         'kuntilanak nangis kenceng',
-        'serigala mengaung'
+        'serigala mengaung',
+        'backsound gelud sunda',
+        'angin',
+        'tikus',
+        'backsound gelud (Lagu Money Rain)',
+        'backgsound sedih naruto'
     ],
     'source' : [
         './audio/sound_000_bel-sekolah.mp3',
@@ -25,6 +30,11 @@ const audioData = {
         './audio/sound_008_kuntilanak-4.mp3',
         './audio/sound_009_kuntilanak-nangis.mp3',
         './audio/sound_010_kuntilanak-nangis-kencang.mp3',
-        './audio/sound_011_serigala.mp3'
+        './audio/sound_011_serigala.mp3',
+        './audio/sound_012_lagu-gelud-sunda-(rap)_edit.mp3',
+        './audio/sound_013_angin.mp3',
+        './audio/sound_014_tikus_edit.mp3',
+        './audio/sound_015_backsound-berkelahi_(Money Rain Phonk Remix)_edit.mp3',
+        './audio/sound_016_lagu-sedih-naruto_edit.mp3'
     ]
 }
