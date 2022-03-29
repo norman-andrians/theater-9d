@@ -28,6 +28,9 @@ let isMuted = [];
 let audioVol = [];
 
 function audioSolect(imdek) {
+	selectedIndex = currentIndex = imdek;
+    document.querySelector('.au-pilih').innerHTML = (selectedIndex+1) + '. ' + audioData.nama[imdek];
+
     for (let i = 0; i < audioData.nama.length; i++) {
         if (i == imdek) {
             warnainKuning(imdek);
@@ -118,6 +121,7 @@ function resetAudio(imdex) {
         if (isPaused[imdex] == true) {
             soundSrc.pause();
             document.querySelectorAll('#au-play-img')[imdex].src = playImg;
+
             isPaused[imdex] = false;
         }
     }
@@ -140,6 +144,7 @@ function playAudio(audioIndex) {
     }
     else if (isPaused[audioIndex] == true) {
         let nearVol = audioVol[audioIndex];
+        warnainKuning(audioIndex);
         document.querySelectorAll('#au-play-img')[audioIndex].src = playImg;
 
         const volFade = setInterval(() => {
@@ -158,6 +163,7 @@ function playAudio(audioIndex) {
     }
 
     audioEnd(audioIndex);
+    document.querySelector('.au-pilih').innerHTML = (selectedIndex+1) + '. ' + audioData.nama[selectedIndex];
 }
 
 function audioList() {
@@ -236,6 +242,8 @@ window.onload = function() {
 
     const volSlider = document.querySelectorAll('#vol-slider')[currentIndex];
 
+    document.querySelector('.au-pilih').innerHTML = (selectedIndex+1) + '. ' + audioData.nama[selectedIndex];
+
     const keyAudioIndex = document.querySelector('html').addEventListener('keyup', (event) => {
         const soundSrc = document.querySelectorAll('#audio-source');
         for (let i = 0; i < audioData.nama.length; i++) {
@@ -276,6 +284,12 @@ window.onload = function() {
         }
         */
 
+        if (event.keyCode == 82) {
+        	event.preventDefault();
+        	resetAudio(currentIndex);
+        }
+
+        document.querySelector('.au-pilih').innerHTML = (selectedIndex+1) + '. ' + audioData.nama[selectedIndex];
     });
 
     audioList();

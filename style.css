@@ -4,7 +4,6 @@ body {
 }
 
 .intro {
-    display: none;
     position: fixed;
     text-align: center;
     width: 100vw;
@@ -87,6 +86,11 @@ h1, h2 {
     border: 2px solid white;
     margin-left: 20px;
     padding: 20px;
+}
+.au-pilih {
+    border: 2px solid white;
+    padding: 10px;
+    margin-bottom: 20px;
 }
 .download-con button {
     background-color: transparent;
